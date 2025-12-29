@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------- LANDING SECTION ---------- */
+.landing {
+  height: 100vh;
+  background: url("web2.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+  margin-left: -460px;
+}
+
+.overlay h1 {
+  font-size: 48px;
+}
+
+.overlay p {
+  margin: 15px 0 25px;
+  font-size: 18px;
+}
+
+.start-btn {
+  padding: 12px 25px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* ---------- STUDY SECTION ---------- */
+.study {
+  min-height: 100vh;
+  background: #050c1c;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  background: #305dbe;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.box {
+  background: #1e293b;
+  padding: 20px;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  text-align: left;
+}
+.loading {
+  color: #6aa9ff;
+  font-style: italic;
+}
+
+
+.input-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input-group input {
+  width: 320px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+
+.generate-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.generate-btn:hover {
+  background-color: #2563eb;
+}
+.box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
