@@ -1,48 +1,99 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import requests
+import os
+from dotenv import load_dotenv
 
-app = Flask(__name__)
-CORS(app)
+# Load environment variables
+from pathlib import Path
 
-@app.route("/")
-def home():
-    return "AI Study Helper Backend Running!"
+env_path = Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
-@app.route("/generate", methods=["POST"])
-def generate():
-    data = request.get_json()
+app = FastAPI()
 
-    topic = data.get("topic", "").strip()
+# ✅ CORS (IMPORTANT for frontend connection)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    if not topic:
-        return jsonify({"error": "No topic provided"}), 400
+# Request schema
+class GenerateRequest(BaseModel):
+    topic: str
+    subject: str
 
-    response = {
-    "notes": [
-        f"{topic} is a core topic",
-        "Frequently asked in exams",
-        "Helps build strong fundamentals"
-    ],
-    "explanation": (
-        f"{topic} is explained in a simple and structured manner. "
-        "It focuses on understanding the concept clearly with examples."
-    ),
-    "exam": [
-        "Definition-based questions",
-        "Short notes questions",
-        "Concept clarity is tested"
-    ],
-    "quiz": [
-    f"What is {topic}?",
-    f"Why is {topic} important?",
-    f"Where is {topic} commonly used?"
-]
+# Hugging Face API setup
+API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-large"
+
+HEADERS = {
+    "Authorization": f"Bearer {os.getenv('HUGGINGFACE_API_KEY')}"
 }
 
-    return jsonify(response)
+# Query function
+def query(payload):
+    try:
+        response = requests.post(
+            API_URL,
+            headers=HEADERS,
+            json=payload,
+            timeout=30
+        )
 
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+        print("🔥 STATUS CODE:", response.status_code)
+        print("🔥 RAW RESPONSE:", response.text)
 
+        return response.json()
 
+    except Exception as e:
+        print("❌ REQUEST ERROR:", str(e))
+        return {"error": str(e)}
 
+# Root route
+@app.get("/")
+def home():
+    return {"message": "AI Study Helper Backend Running 🚀"}
+
+# Main AI route
+@app.post("/generate")
+def generate(data: GenerateRequest):
+    print("📥 Incoming request:", data)
+
+    prompt = f"""
+    Topic: {data.topic}
+    Subject: {data.subject}
+
+    Give:
+    1. Short exam notes
+    2. Explanation
+    3. 3 exam points
+    4. 2 quiz questions
+    """
+
+    try:
+        print("🔑 API KEY:", os.getenv("HUGGINGFACE_API_KEY"))
+
+        result = query({"inputs": prompt})
+
+        print("🔥 FULL HF RESPONSE:", result)
+
+        # ✅ Handle Hugging Face response safely
+        if isinstance(result, list) and "generated_text" in result[0]:
+            output = result[0]["generated_text"]
+        else:
+            raise HTTPException(status_code=500, detail=str(result))
+
+        return {
+            "notes": output,
+            "explanation": output,
+            "exam_points": ["Point 1", "Point 2", "Point 3"],
+            "quiz": ["Question 1", "Question 2"]
+        }
+
+    except Exception as e:
+        print("❌ ERROR:", str(e))
+        raise HTTPException(status_code=500, detail=str(e))
