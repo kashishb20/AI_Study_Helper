@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Study Helper | Smart Learning</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at top left, #3949ab, transparent 35%),
+                radial-gradient(circle at bottom right, #7b1fa2, transparent 35%),
+                #0b1020;
+
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px 20px;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        /* TOP BADGE */
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 18px;
+
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.08);
+
+            color: #d9dcff;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+
+            backdrop-filter: blur(10px);
+        }
+
+        /* HEADING */
+
+        h1 {
+            font-size: clamp(42px, 7vw, 76px);
+
+            margin-bottom: 18px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #b8c1ff,
+                #e0b3ff
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 20px;
+
+            color: #c7cbe3;
+
+            max-width: 650px;
+
+            margin: 0 auto 45px;
+
+            line-height: 1.6;
+        }
+
+        /* CARD */
+
+        .card {
+            max-width: 720px;
+
+            margin: auto;
+
+            padding: 45px;
+
+            border-radius: 28px;
+
+            background: rgba(255,255,255,0.09);
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.35);
+
+            backdrop-filter: blur(18px);
+        }
+
+        .icon {
+            font-size: 70px;
+
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 32px;
+
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #c5c9dc;
+
+            font-size: 17px;
+
+            line-height: 1.6;
+
+            margin-bottom: 30px;
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 35px;
+        }
+
+        .feature {
+            padding: 16px 8px;
+
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.07);
+
+            font-size: 14px;
+
+            color: #e0e2ef;
+        }
+
+        .feature span {
+            display: block;
+
+            font-size: 24px;
+
+            margin-bottom: 8px;
+        }
+
+        /* BUTTON */
+
+        .launch-btn {
+            display: inline-block;
+
+            padding: 15px 34px;
+
+            border-radius: 50px;
+
+            background: linear-gradient(
+                135deg,
+                #667eea,
+                #764ba2
+            );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 30px rgba(118,75,162,0.4);
+        }
+
+        .launch-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+
+            box-shadow:
+                0 15px 35px rgba(118,75,162,0.6);
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 40px;
+
+            color: #8f94ad;
+
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .subtitle {
+                font-size: 17px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div class="badge">
+            ✨ AI-Powered Learning Platform
+        </div>
+
+        <h1>
+            AI Study Helper
+        </h1>
+
+        <p class="subtitle">
+            Learn smarter, understand faster, and prepare better
+            with your personal AI-powered study assistant.
+        </p>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🤖📚
+            </div>
+
+            <h2>
+                Your Smart Study Companion
+            </h2>
+
+            <p>
+                Enter any topic and get concise notes, clear explanations,
+                important exam points, and a quick quiz — all in one place.
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+                    <span>📌</span>
+                    Short Notes
+                </div>
+
+                <div class="feature">
+                    <span>📖</span>
+                    Explanations
+                </div>
+
+                <div class="feature">
+                    <span>📝</span>
+                    Exam Points
+                </div>
+
+                <div class="feature">
+                    <span>🧠</span>
+                    Quick Quiz
+                </div>
+
+            </div>
+
+
+            <!-- CHANGE THIS PATH IF YOUR FOLDER HAS A DIFFERENT NAME -->
+
+            <a
+                href="ai-study-helper/index.html"
+                class="launch-btn"
+            >
+                🚀 Launch AI Study Helper
+            </a>
+
+        </div>
+
+
+        <footer>
+            Built with HTML, CSS, JavaScript & AI
+        </footer>
+
+    </div>
+
+</body>
+</html>
