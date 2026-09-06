@@ -1,52 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>AI Study Helper</title>
-  <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Study Helper</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
-<script src="script.js"></script>
+
+
 <body>
 
-<!-- 🔹 SECTION 1: LANDING -->
-<section class="landing">
-  <div class="overlay">
-    <h1>AI Study Helper</h1>
-    <p>Smart learning made simple</p>
-    <a href="#study" class="start-btn">Let's Go</a>
-  </div>
-</section>
 
-<!-- 🔹 SECTION 2: STUDY -->
-<section class="study" id="study">
-  <h1>Start Studying</h1>
-  <br>
-  <h2>Enter a topic :- </h2>
-  <br>
-  <div class="input-group">
-    <input type="text" id="topicInput" placeholder="e.g. Breadth First Search">
-    <button class="generate-btn" onclick="generateContent()">Generate</button>
-  </div>
-  <br><br>
- 
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-  <div class="container">
-    <div class="box" id="notes">
-      <h3>📌 Short Notes</h3>
-    </div>
+    <header class="topbar">
 
-    <div class="box" id="explanation">
-      <h3>📖 Explanation</h3>
-    </div>
+        <div class="logo">
+            AI Study Helper
+        </div>
 
-    <div class="box" id="exam">
-      <h3>📝 Exam Points</h3>
-    </div>
-    <div class="box" id="quiz">
-      <h3>🧠 Quick Quiz</h3>
-    </div>
-  </div>
-</section>
+        <div class="status">
+            AI Learning Assistant
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         SECTION 1: INTRO
+    ====================================================== -->
+
+    <section class="landing">
+
+        <div class="landing-content">
+
+            <p class="eyebrow">
+                AI-POWERED LEARNING
+            </p>
+
+            <h1>
+                Study smarter.
+                <br>
+                Understand faster.
+            </h1>
+
+            <p class="landing-description">
+
+                Get clear explanations, concise notes,
+                important exam points and practice questions
+                for any topic you are studying.
+
+            </p>
+
+            <a
+                href="#study"
+                class="start-btn"
+            >
+                Start Studying →
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SECTION 2: STUDY
+    ====================================================== -->
+
+    <section
+        class="study"
+        id="study"
+    >
+
+        <div class="study-header">
+
+            <p class="section-label">
+                STUDY WORKSPACE
+            </p>
+
+            <h2>
+                What are you learning today?
+            </h2>
+
+            <p>
+                Enter a subject and topic to generate
+                personalized study material.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INPUT AREA
+        ================================================== -->
+
+        <div class="input-card">
+
+
+            <!-- SUBJECT -->
+
+            <div class="field">
+
+                <label for="subjectInput">
+                    Subject
+                </label>
+
+                <input
+                    type="text"
+                    id="subjectInput"
+                    placeholder="e.g. Data Structures"
+                >
+
+            </div>
+
+
+
+            <!-- TOPIC -->
+
+            <div class="field">
+
+                <label for="topicInput">
+                    Topic
+                </label>
+
+                <input
+                    type="text"
+                    id="topicInput"
+                    placeholder="e.g. Breadth First Search"
+                >
+
+            </div>
+
+
+            <button
+                class="generate-btn"
+                id="generateBtn"
+                onclick="generateContent()"
+            >
+                Generate Study Material
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOADING MESSAGE
+        ================================================== -->
+
+        <div
+            id="loading"
+            class="loading"
+            style="display: none;"
+        >
+
+            Generating your study material...
+
+        </div>
+
+
+
+        <!-- =================================================
+             ERROR MESSAGE
+        ================================================== -->
+
+        <div
+            id="error"
+            class="error"
+            style="display: none;"
+        >
+
+        </div>
+
+
+
+        <!-- =================================================
+             GENERATED CONTENT
+        ================================================== -->
+
+        <div class="container">
+
+
+            <!-- SHORT NOTES -->
+
+            <div
+                class="box"
+                id="notes"
+            >
+
+                <h3>
+                    Short Notes
+                </h3>
+
+                <div class="content">
+                    Your notes will appear here.
+                </div>
+
+            </div>
+
+
+
+            <!-- EXPLANATION -->
+
+            <div
+                class="box"
+                id="explanation"
+            >
+
+                <h3>
+                    Explanation
+                </h3>
+
+                <div class="content">
+                    Your explanation will appear here.
+                </div>
+
+            </div>
+
+
+
+            <!-- EXAM POINTS -->
+
+            <div
+                class="box"
+                id="exam"
+            >
+
+                <h3>
+                    Exam Points
+                </h3>
+
+                <div class="content">
+                    Important exam points will appear here.
+                </div>
+
+            </div>
+
+
+
+            <!-- QUIZ -->
+
+            <div
+                class="box"
+                id="quiz"
+            >
+
+                <h3>
+                    Quick Quiz
+                </h3>
+
+                <div class="content">
+                    Your quiz questions will appear here.
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+            AI Study Helper
+        </p>
+
+        <p>
+            Built for smarter learning
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         
+         IMPORTANT:
+         Keep this at the bottom so the HTML loads first.
+    ====================================================== -->
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
