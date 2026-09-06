@@ -1,130 +1,664 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
-/* ---------- LANDING SECTION ---------- */
+body {
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    background: #07111f;
+    color: #f8fafc;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   TOP NAVIGATION
+========================================================= */
+
+.topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 22px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 10;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.55),
+        transparent
+    );
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.status {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
+
+    padding: 7px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================================================
+   LANDING SECTION
+========================================================= */
+
 .landing {
-  height: 100vh;
-  background: url("web2.png") center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 8, 18, 0.94) 0%,
+            rgba(3, 8, 18, 0.78) 35%,
+            rgba(3, 8, 18, 0.42) 65%,
+            rgba(3, 8, 18, 0.72) 100%
+        ),
+        url("web2.png") center/cover no-repeat;
 }
 
-.overlay {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 50px;
-  border-radius: 16px;
-  text-align: center;
-  color: white;
-  margin-left: -460px;
+
+/* subtle dark overlay */
+
+.landing::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(59, 130, 246, 0.12),
+            transparent 35%
+        );
+
+    pointer-events: none;
 }
 
-.overlay h1 {
-  font-size: 48px;
+
+/* =========================================================
+   LANDING CONTENT
+========================================================= */
+
+.landing-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(700px, 90%);
+
+    margin-left: 8%;
+
+    padding-top: 40px;
 }
 
-.overlay p {
-  margin: 15px 0 25px;
-  font-size: 18px;
+
+.eyebrow {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    color: #93c5fd;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
 }
+
+
+.landing h1 {
+    font-size: clamp(48px, 6vw, 78px);
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 25px;
+
+    font-weight: 800;
+
+    color: #ffffff;
+}
+
+
+.landing-description {
+    max-width: 600px;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.76);
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   START BUTTON
+========================================================= */
 
 .start-btn {
-  padding: 12px 25px;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 25px;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+
+    box-shadow:
+        0 10px 30px rgba(37, 99, 235, 0.25);
 }
 
-/* ---------- STUDY SECTION ---------- */
+
+.start-btn:hover {
+    transform: translateY(-2px);
+
+    background: #1d4ed8;
+
+    box-shadow:
+        0 14px 35px rgba(37, 99, 235, 0.35);
+}
+
+
+/* =========================================================
+   STUDY SECTION
+========================================================= */
+
 .study {
-  min-height: 100vh;
-  background: #050c1c;
-  color: white;
-  text-align: center;
-  padding: 40px 20px;
-}
+    min-height: 100vh;
 
-input {
-  padding: 10px;
-  width: 300px;
-  border-radius: 6px;
-  border: none;
-}
+    padding: 100px 6%;
 
-button {
-  padding: 10px 20px;
-  background: #305dbe;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(37, 99, 235, 0.12),
+            transparent 30%
+        ),
+        #07111f;
 
-.container {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.box {
-  background: #1e293b;
-  padding: 20px;
-  width: 300px;
-  height: 200px;
-  border-radius: 10px;
-  text-align: left;
-}
-.loading {
-  color: #6aa9ff;
-  font-style: italic;
+    color: #f8fafc;
 }
 
 
-.input-group {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+/* =========================================================
+   STUDY HEADER
+========================================================= */
+
+.study-header {
+    max-width: 750px;
+
+    margin: 0 auto 45px;
+
+    text-align: center;
 }
 
-.input-group input {
-  width: 320px;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
+
+.section-label {
+    margin-bottom: 10px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #60a5fa;
 }
+
+
+.study-header h2 {
+    font-size: clamp(32px, 4vw, 48px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 15px;
+}
+
+
+.study-header > p:last-child {
+    color: #94a3b8;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   INPUT CARD
+========================================================= */
+
+.input-card {
+    width: min(850px, 100%);
+
+    margin: 0 auto 50px;
+
+    padding: 30px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr auto;
+
+    gap: 18px;
+
+    align-items: end;
+
+    background: rgba(15, 23, 42, 0.85);
+
+    border: 1px solid rgba(148, 163, 184, 0.14);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* =========================================================
+   INPUT FIELDS
+========================================================= */
+
+.field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.field label {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #cbd5e1;
+}
+
+
+.field input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border-radius: 8px;
+
+    border: 1px solid #334155;
+
+    outline: none;
+
+    background: #0f172a;
+
+    color: #f8fafc;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.field input::placeholder {
+    color: #64748b;
+}
+
+
+.field input:focus {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+
+/* =========================================================
+   GENERATE BUTTON
+========================================================= */
 
 .generate-btn {
-  padding: 12px 24px;
-  border-radius: 8px;
-  border: none;
-  background-color: #3b82f6;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
+
 
 .generate-btn:hover {
-  background-color: #2563eb;
-}
-.box {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
 }
 
+
+.generate-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+    width: fit-content;
+
+    margin: 0 auto 30px;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(59, 130, 246, 0.08);
+
+    border: 1px solid rgba(59, 130, 246, 0.18);
+
+    color: #60a5fa;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error {
+    width: min(850px, 100%);
+
+    margin: 0 auto 30px;
+
+    padding: 14px 18px;
+
+    border-radius: 10px;
+
+    background: rgba(239, 68, 68, 0.08);
+
+    border: 1px solid rgba(239, 68, 68, 0.25);
+
+    color: #fca5a5;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESULT CONTAINER
+========================================================= */
+
+.container {
+    width: min(1200px, 100%);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   RESULT BOXES
+========================================================= */
+
+.box {
+    min-height: 260px;
+
+    padding: 25px;
+
+    background: #111c2e;
+
+    border: 1px solid rgba(148, 163, 184, 0.13);
+
+    border-radius: 14px;
+
+    text-align: left;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
 .box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
+
+    border-color: rgba(96, 165, 250, 0.35);
+}
+
+
+.box h3 {
+    margin-bottom: 18px;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    color: #f8fafc;
+}
+
+
+.box .content {
+    color: #cbd5e1;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background: #040b15;
+
+    border-top: 1px solid rgba(148, 163, 184, 0.08);
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+footer p:first-child {
+    color: #94a3b8;
+
+    font-weight: 600;
+
+    margin-bottom: 4px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .landing-content {
+        margin-left: 6%;
+    }
+
+    .input-card {
+        grid-template-columns: 1fr;
+    }
+
+    .generate-btn {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+        padding: 18px 5%;
+    }
+
+    .status {
+        display: none;
+    }
+
+
+    .landing {
+        min-height: 100svh;
+
+        background:
+            linear-gradient(
+                rgba(3, 8, 18, 0.76),
+                rgba(3, 8, 18, 0.9)
+            ),
+            url("web2.png") center/cover no-repeat;
+    }
+
+
+    .landing-content {
+        width: 90%;
+
+        margin: 0 auto;
+
+        padding-top: 60px;
+    }
+
+
+    .landing h1 {
+        font-size: 48px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .landing-description {
+        font-size: 16px;
+    }
+
+
+    .study {
+        padding: 75px 5%;
+    }
+
+
+    .input-card {
+        padding: 20px;
+    }
+
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .box {
+        min-height: 220px;
+    }
+
 }
