@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Study Helper | Smart Learning</title>
+    <title>AI Study Helper | Learn Smarter</title>
 
     <style>
 
@@ -15,295 +15,983 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 
+                         "Segoe UI", Roboto, Arial, sans-serif;
+
             min-height: 100vh;
 
             background:
-                radial-gradient(circle at top left, #3949ab, transparent 35%),
-                radial-gradient(circle at bottom right, #7b1fa2, transparent 35%),
-                #0b1020;
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(79, 70, 229, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(124, 58, 237, 0.14),
+                    transparent 30%
+                ),
+                #080b14;
 
-            color: white;
+            color: #f5f7ff;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            width: 100%;
+            padding: 24px 6%;
 
             display: flex;
-            justify-content: center;
             align-items: center;
-
-            padding: 40px 20px;
+            justify-content: space-between;
         }
 
-        .wrapper {
-            width: 100%;
-            max-width: 1100px;
-            text-align: center;
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+
+            letter-spacing: -0.5px;
         }
 
-        /* TOP BADGE */
+        .logo span {
+            color: #8b8cff;
+        }
 
-        .badge {
-            display: inline-block;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
 
-            padding: 8px 18px;
-
-            border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 50px;
-
-            background: rgba(255,255,255,0.08);
-
-            color: #d9dcff;
+        .nav-link {
+            color: #a9aec3;
+            text-decoration: none;
 
             font-size: 14px;
 
-            margin-bottom: 25px;
-
-            backdrop-filter: blur(10px);
+            transition: 0.2s;
         }
 
-        /* HEADING */
+        .nav-link:hover {
+            color: white;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding:
+                90px 30px
+                70px;
+
+            text-align: center;
+        }
+
+
+        /* SMALL LABEL */
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            background: rgba(255,255,255,0.04);
+
+            color: #b9bce0;
+
+            font-size: 13px;
+
+            margin-bottom: 28px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+
+            background: #8b8cff;
+
+            border-radius: 50%;
+        }
+
+
+        /* MAIN HEADING */
 
         h1 {
-            font-size: clamp(42px, 7vw, 76px);
+            max-width: 900px;
 
-            margin-bottom: 18px;
+            margin: auto;
 
+            font-size: clamp(
+                48px,
+                7vw,
+                82px
+            );
+
+            line-height: 1.02;
+
+            letter-spacing: -3px;
+
+            font-weight: 750;
+        }
+
+        h1 span {
             background: linear-gradient(
                 90deg,
-                #ffffff,
-                #b8c1ff,
-                #e0b3ff
+                #8b8cff,
+                #b48cff
             );
 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .subtitle {
-            font-size: 20px;
 
-            color: #c7cbe3;
+        /* DESCRIPTION */
 
+        .hero-description {
             max-width: 650px;
 
-            margin: 0 auto 45px;
+            margin: 28px auto 38px;
 
-            line-height: 1.6;
+            color: #a7adbf;
+
+            font-size: 18px;
+
+            line-height: 1.7;
         }
 
-        /* CARD */
 
-        .card {
-            max-width: 720px;
+        /* CTA */
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            margin-bottom: 75px;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 14px 24px;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #090b12;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 650;
+
+            transition: 0.25s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 30px rgba(255,255,255,0.12);
+        }
+
+        .secondary-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 14px 24px;
+
+            border-radius: 9px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            color: #d5d8e5;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            transition: 0.25s;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+
+        /* =========================
+           PRODUCT PREVIEW
+        ========================= */
+
+        .preview {
+            max-width: 1000px;
 
             margin: auto;
 
-            padding: 45px;
+            padding: 7px;
 
-            border-radius: 28px;
+            border-radius: 16px;
 
-            background: rgba(255,255,255,0.09);
-
-            border: 1px solid rgba(255,255,255,0.18);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139,140,255,0.35),
+                    rgba(255,255,255,0.08)
+                );
 
             box-shadow:
-                0 25px 70px rgba(0,0,0,0.35);
-
-            backdrop-filter: blur(18px);
+                0 30px 100px rgba(0,0,0,0.45);
         }
 
-        .icon {
-            font-size: 70px;
+        .preview-inner {
+            border-radius: 11px;
 
-            margin-bottom: 20px;
+            background: #111521;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            overflow: hidden;
+
+            text-align: left;
         }
 
-        .card h2 {
-            font-size: 32px;
 
-            margin-bottom: 15px;
+        /* FAKE APP HEADER */
+
+        .app-header {
+            height: 50px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 18px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+
+            color: #858ca2;
+
+            font-size: 12px;
         }
 
-        .card p {
-            color: #c5c9dc;
-
-            font-size: 17px;
-
-            line-height: 1.6;
-
-            margin-bottom: 30px;
+        .window-dots {
+            display: flex;
+            gap: 6px;
         }
 
-        /* FEATURES */
+        .window-dots i {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #454b5c;
+
+            display: block;
+        }
+
+
+        /* APP CONTENT */
+
+        .app-content {
+            min-height: 330px;
+
+            display: grid;
+
+            grid-template-columns:
+                190px 1fr;
+        }
+
+
+        /* SIDEBAR */
+
+        .sidebar {
+            border-right:
+                1px solid rgba(255,255,255,0.07);
+
+            padding: 25px 18px;
+        }
+
+        .sidebar-title {
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #e5e7f0;
+
+            margin-bottom: 22px;
+        }
+
+        .side-item {
+            padding: 10px 11px;
+
+            margin-bottom: 5px;
+
+            border-radius: 7px;
+
+            color: #858ca2;
+
+            font-size: 12px;
+        }
+
+        .side-item.active {
+            background: rgba(139,140,255,0.12);
+
+            color: #c9caff;
+        }
+
+
+        /* MAIN PREVIEW */
+
+        .main-preview {
+            padding: 38px;
+        }
+
+        .preview-label {
+            color: #858ca2;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 10px;
+        }
+
+        .preview-title {
+            font-size: 25px;
+
+            font-weight: 650;
+
+            margin-bottom: 12px;
+        }
+
+        .preview-text {
+            color: #9299ad;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            max-width: 650px;
+        }
+
+        .preview-line {
+            height: 1px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            margin: 28px 0;
+        }
+
+        .preview-cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+        .preview-card {
+            padding: 18px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+        }
+
+        .preview-card-title {
+            font-size: 12px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+        .preview-card-text {
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            color: #777f95;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features-section {
+            max-width: 1050px;
+
+            margin: 0 auto;
+
+            padding:
+                40px 30px
+                100px;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 42px;
+        }
+
+        .section-heading h2 {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+
+            letter-spacing: -1px;
+        }
+
+        .section-heading p {
+            color: #858ca2;
+
+            font-size: 14px;
+        }
 
         .features {
             display: grid;
 
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns:
+                repeat(4, 1fr);
 
-            gap: 12px;
-
-            margin-bottom: 35px;
+            gap: 14px;
         }
 
         .feature {
-            padding: 16px 8px;
+            padding: 24px;
 
-            border-radius: 15px;
+            border-radius: 12px;
 
-            background: rgba(255,255,255,0.07);
+            border:
+                1px solid rgba(255,255,255,0.07);
 
-            font-size: 14px;
+            background:
+                rgba(255,255,255,0.025);
 
-            color: #e0e2ef;
+            transition: 0.25s;
         }
 
-        .feature span {
-            display: block;
+        .feature:hover {
+            transform: translateY(-4px);
 
-            font-size: 24px;
+            border-color:
+                rgba(139,140,255,0.25);
 
-            margin-bottom: 8px;
+            background:
+                rgba(255,255,255,0.045);
         }
 
-        /* BUTTON */
+        .feature-number {
+            font-size: 11px;
 
-        .launch-btn {
-            display: inline-block;
+            color: #777f95;
 
-            padding: 15px 34px;
-
-            border-radius: 50px;
-
-            background: linear-gradient(
-                135deg,
-                #667eea,
-                #764ba2
-            );
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 18px;
-
-            font-weight: bold;
-
-            transition: 0.3s;
-
-            box-shadow:
-                0 10px 30px rgba(118,75,162,0.4);
+            margin-bottom: 25px;
         }
 
-        .launch-btn:hover {
-            transform: translateY(-4px) scale(1.03);
+        .feature h3 {
+            font-size: 15px;
 
-            box-shadow:
-                0 15px 35px rgba(118,75,162,0.6);
+            margin-bottom: 9px;
         }
 
-        /* FOOTER */
+        .feature p {
+            color: #7f879b;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            margin-top: 40px;
+            border-top:
+                1px solid rgba(255,255,255,0.06);
 
-            color: #8f94ad;
+            padding: 25px 6%;
 
-            font-size: 14px;
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #666d80;
+
+            font-size: 12px;
         }
 
-        /* MOBILE */
 
-        @media (max-width: 700px) {
+        /* =========================
+           MOBILE
+        ========================= */
 
-            .card {
-                padding: 30px 20px;
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 20px;
+            }
+
+            .nav-right {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .buttons {
+                flex-direction: column;
+
+                align-items: center;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 200px;
+
+                justify-content: center;
+            }
+
+            .app-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main-preview {
+                padding: 25px;
+            }
+
+            .preview-cards {
+                grid-template-columns: 1fr;
             }
 
             .features {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            .subtitle {
-                font-size: 17px;
+            footer {
+                flex-direction: column;
+
+                gap: 8px;
+
+                text-align: center;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            h1 {
+                font-size: 46px;
             }
 
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .preview {
+                display: none;
+            }
         }
 
     </style>
 </head>
 
+
 <body>
 
-    <div class="wrapper">
 
-        <div class="badge">
-            ✨ AI-Powered Learning Platform
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            AI <span>Study Helper</span>
         </div>
 
-        <h1>
-            AI Study Helper
-        </h1>
+        <div class="nav-right">
 
-        <p class="subtitle">
-            Learn smarter, understand faster, and prepare better
-            with your personal AI-powered study assistant.
-        </p>
+            <a href="#features" class="nav-link">
+                Features
+            </a>
+
+            <a href="frontend/index.html"
+               class="nav-link">
+                Open App →
+            </a>
+
+        </div>
+
+    </nav>
 
 
-        <div class="card">
 
-            <div class="icon">
-                🤖📚
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                <span class="dot"></span>
+                AI-powered learning workspace
             </div>
 
-            <h2>
-                Your Smart Study Companion
-            </h2>
 
-            <p>
-                Enter any topic and get concise notes, clear explanations,
-                important exam points, and a quick quiz — all in one place.
+            <h1>
+                Study smarter.
+                <br>
+                <span>Understand faster.</span>
+            </h1>
+
+
+            <p class="hero-description">
+
+                Turn complex topics into clear explanations,
+                concise notes, exam-focused insights, and
+                practice questions — all in one place.
+
             </p>
+
+
+            <div class="buttons">
+
+                <!-- KEEPING YOUR EXISTING PATH -->
+
+                <a
+                    href="frontend/index.html"
+                    class="primary-btn"
+                >
+                    Get Started&nbsp; →
+                </a>
+
+
+                <a
+                    href="#features"
+                    class="secondary-btn"
+                >
+                    Explore Features
+                </a>
+
+            </div>
+
+
+
+            <!-- PRODUCT PREVIEW -->
+
+            <div class="preview">
+
+                <div class="preview-inner">
+
+                    <div class="app-header">
+
+                        <div class="window-dots">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <span>
+                            AI Study Helper
+                        </span>
+
+                    </div>
+
+
+                    <div class="app-content">
+
+
+                        <aside class="sidebar">
+
+                            <div class="sidebar-title">
+                                Study Workspace
+                            </div>
+
+                            <div class="side-item active">
+                                Overview
+                            </div>
+
+                            <div class="side-item">
+                                Notes
+                            </div>
+
+                            <div class="side-item">
+                                Explanations
+                            </div>
+
+                            <div class="side-item">
+                                Exam Preparation
+                            </div>
+
+                            <div class="side-item">
+                                Quiz
+                            </div>
+
+                        </aside>
+
+
+
+                        <div class="main-preview">
+
+                            <div class="preview-label">
+                                Topic
+                            </div>
+
+                            <div class="preview-title">
+                                Digital Signal Processing
+                            </div>
+
+                            <p class="preview-text">
+
+                                Get a simplified explanation,
+                                important concepts, and
+                                exam-focused material for
+                                the topic you're studying.
+
+                            </p>
+
+
+                            <div class="preview-line"></div>
+
+
+                            <div class="preview-cards">
+
+                                <div class="preview-card">
+
+                                    <div class="preview-card-title">
+                                        Quick Notes
+                                    </div>
+
+                                    <div class="preview-card-text">
+                                        Concise concepts
+                                        for quick revision.
+                                    </div>
+
+                                </div>
+
+
+                                <div class="preview-card">
+
+                                    <div class="preview-card-title">
+                                        Key Concepts
+                                    </div>
+
+                                    <div class="preview-card-text">
+                                        Focus on what
+                                        matters most.
+                                    </div>
+
+                                </div>
+
+
+                                <div class="preview-card">
+
+                                    <div class="preview-card-title">
+                                        Practice
+                                    </div>
+
+                                    <div class="preview-card-text">
+                                        Test your understanding
+                                        with AI-generated questions.
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             FEATURES
+        ========================== -->
+
+        <section
+            class="features-section"
+            id="features"
+        >
+
+            <div class="section-heading">
+
+                <h2>
+                    Everything you need to study better
+                </h2>
+
+                <p>
+                    Designed around the way students actually prepare.
+                </p>
+
+            </div>
 
 
             <div class="features">
 
-                <div class="feature">
-                    <span>📌</span>
-                    Short Notes
-                </div>
 
                 <div class="feature">
-                    <span>📖</span>
-                    Explanations
+
+                    <div class="feature-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Clear Explanations
+                    </h3>
+
+                    <p>
+                        Break down difficult concepts
+                        into simple, understandable
+                        explanations.
+                    </p>
+
                 </div>
 
-                <div class="feature">
-                    <span>📝</span>
-                    Exam Points
-                </div>
+
 
                 <div class="feature">
-                    <span>🧠</span>
-                    Quick Quiz
+
+                    <div class="feature-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Quick Notes
+                    </h3>
+
+                    <p>
+                        Generate concise study material
+                        for faster revision.
+                    </p>
+
                 </div>
+
+
+
+                <div class="feature">
+
+                    <div class="feature-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Exam Preparation
+                    </h3>
+
+                    <p>
+                        Focus on important concepts,
+                        definitions, and exam points.
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature">
+
+                    <div class="feature-number">
+                        04
+                    </div>
+
+                    <h3>
+                        AI Quiz
+                    </h3>
+
+                    <p>
+                        Practice what you've learned
+                        with automatically generated questions.
+                    </p>
+
+                </div>
+
 
             </div>
 
+        </section>
 
-            <!-- CHANGE THIS PATH IF YOUR FOLDER HAS A DIFFERENT NAME -->
-
-            <a href="frontend/index.html" class="launch-btn">
-    🚀 Launch AI Study Helper
-</a>
-
-        </div>
+    </main>
 
 
-        <footer>
-            Built with HTML, CSS, JavaScript & AI
-        </footer>
 
-    </div>
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <span>
+            © 2026 AI Study Helper
+        </span>
+
+        <span>
+            Built for smarter learning
+        </span>
+
+    </footer>
+
 
 </body>
 </html>
