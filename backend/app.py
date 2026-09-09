@@ -7,6 +7,7 @@ from pathlib import Path
 import requests
 import os
 import json
+import re
 
 
 # ============================================================
@@ -16,6 +17,11 @@ import json
 env_path = Path(__file__).resolve().parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
+HF_TOKEN = os.getenv("HUGGINGFACE_API_KEY")
+
+API_URL = "https://router.huggingface.co/v1/chat/completions"
+MODEL_NAME = "deepseek-ai/DeepSeek-V3-0324"
+
 
 # ============================================================
 # FASTAPI APP
@@ -24,7 +30,7 @@ load_dotenv(dotenv_path=env_path)
 app = FastAPI(
     title="AI Study Helper API",
     description="Backend API for AI-powered study assistance",
-    version="1.0.0"
+    version="2.0.0"
 )
 
 
@@ -39,19 +45,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-# ============================================================
-# ENVIRONMENT VARIABLES
-# ============================================================
-
-HF_TOKEN = os.getenv("HUGGINGFACE_API_KEY")
-
-# Current Hugging Face OpenAI-compatible router
-API_URL = "https://router.huggingface.co/v1/chat/completions"
-
-# Model available through Hugging Face Inference Providers
-MODEL_NAME = "deepseek-ai/DeepSeek-V3-0324"
 
 
 # ============================================================
@@ -88,6 +81,81 @@ def health():
 
 
 # ============================================================
+# CLEAN AI RESPONSE
+# ============================================================
+
+def clean_json_response(content: str):
+    content = content.strip()
+
+    # Remove markdown code fences if the model adds them
+    content = re.sub(r"^```json\s*", "", content, flags=re.IGNORECASE)
+    content = re.sub(r"^```\s*", "", content)
+    content = re.sub(r"\s*```$", "", content)
+
+    content = content.strip()
+
+    # Find JSON object if extra text was returned
+    start = content.find("{")
+    end = content.rfind("}")
+
+    if start != -1 and end != -1:
+        content = content[start:end + 1]
+
+    try:
+        return json.loads(content)
+
+    except json.JSONDecodeError:
+        raise HTTPException(
+            status_code=500,
+            detail="AI returned an invalid response format. Please try again."
+        )
+
+
+# ============================================================
+# NORMALIZE AI RESPONSE
+# ============================================================
+
+def normalize_response(data):
+    notes = data.get("notes", [])
+    explanation = data.get("explanation", "")
+    exam_points = data.get("exam_points", data.get("exam", []))
+    quiz = data.get("quiz", [])
+
+    # Ensure notes is always a list
+    if isinstance(notes, str):
+        notes = [notes]
+
+    # Ensure exam points is always a list
+    if isinstance(exam_points, str):
+        exam_points = [exam_points]
+
+    # Ensure quiz is always a list
+    if isinstance(quiz, dict):
+        quiz = [quiz]
+
+    cleaned_quiz = []
+
+    for question in quiz:
+        if isinstance(question, dict):
+            cleaned_quiz.append({
+                "question": str(question.get("question", "")),
+                "answer": str(question.get("answer", ""))
+            })
+        else:
+            cleaned_quiz.append({
+                "question": str(question),
+                "answer": ""
+            })
+
+    return {
+        "notes": [str(note) for note in notes],
+        "explanation": str(explanation),
+        "exam": [str(point) for point in exam_points],
+        "quiz": cleaned_quiz
+    }
+
+
+# ============================================================
 # AI QUERY FUNCTION
 # ============================================================
 
@@ -105,44 +173,58 @@ def query_ai(topic: str, subject: str):
     }
 
     prompt = f"""
-You are an expert AI study assistant for college students.
+You are an expert AI study assistant for college engineering students.
 
 Subject: {subject}
 Topic: {topic}
 
-Create useful exam-oriented study material for this topic.
+Create useful, accurate and exam-oriented study material.
 
-Return ONLY valid JSON in exactly this format:
+Return ONLY valid JSON using exactly this structure:
 
 {{
-    "notes": "Short and concise exam notes about the topic.",
+    "notes": [
+        "Short note 1",
+        "Short note 2",
+        "Short note 3",
+        "Short note 4"
+    ],
     "explanation": "A clear and beginner-friendly explanation of the topic.",
-    "exam_points": [
+    "exam": [
         "Important exam point 1",
         "Important exam point 2",
-        "Important exam point 3"
+        "Important exam point 3",
+        "Important exam point 4",
+        "Important exam point 5"
     ],
     "quiz": [
         {{
-            "question": "Quiz question 1",
+            "question": "Question 1",
             "answer": "Correct answer 1"
         }},
         {{
-            "question": "Quiz question 2",
+            "question": "Question 2",
             "answer": "Correct answer 2"
+        }},
+        {{
+            "question": "Question 3",
+            "answer": "Correct answer 3"
         }}
     ]
 }}
 
 Rules:
 
-1. Keep the notes concise.
-2. Explain the concept clearly.
-3. Give exactly 3 important exam points.
-4. Give exactly 2 quiz questions.
-5. Make the quiz relevant to the topic.
-6. Do not use markdown outside the JSON.
-7. Do not add any text before or after the JSON.
+1. Keep the notes concise and useful for revision.
+2. Explain the topic in simple but technically correct language.
+3. Include important definitions, concepts and formulas where relevant.
+4. Give exactly 5 exam points.
+5. Give exactly 3 quiz questions.
+6. Quiz questions must test understanding, not just memorization.
+7. Keep every answer directly relevant to the given topic.
+8. Do not invent facts.
+9. Do not use markdown outside the JSON.
+10. Do not add any text before or after the JSON.
 """
 
     payload = {
@@ -152,7 +234,7 @@ Rules:
                 "role": "system",
                 "content": (
                     "You are a reliable college-level AI study assistant. "
-                    "Always follow the requested JSON format."
+                    "Return only valid JSON and follow the requested structure exactly."
                 )
             },
             {
@@ -161,35 +243,31 @@ Rules:
             }
         ],
         "temperature": 0.4,
-        "max_tokens": 1200
+        "max_tokens": 1600
     }
 
     try:
-
         response = requests.post(
             API_URL,
             headers=headers,
             json=payload,
-            timeout=60
+            timeout=90
         )
 
     except requests.exceptions.Timeout:
-
         raise HTTPException(
             status_code=504,
             detail="AI request timed out. Please try again."
         )
 
-    except requests.exceptions.RequestException as e:
-
+    except requests.exceptions.RequestException:
         raise HTTPException(
             status_code=502,
-            detail=f"Could not connect to Hugging Face: {str(e)}"
+            detail="Could not connect to the AI service."
         )
 
-
     # ========================================================
-    # HANDLE HTTP ERRORS
+    # HANDLE API ERRORS
     # ========================================================
 
     if response.status_code != 200:
@@ -202,17 +280,15 @@ Rules:
         print("Hugging Face error:", error_data)
 
         raise HTTPException(
-            status_code=response.status_code,
-            detail=f"Hugging Face API error: {error_data}"
+            status_code=502,
+            detail="AI service returned an error. Please try again."
         )
 
-
     # ========================================================
-    # PARSE RESPONSE
+    # EXTRACT AI RESPONSE
     # ========================================================
 
     try:
-
         result = response.json()
 
         content = result["choices"][0]["message"]["content"]
@@ -223,89 +299,71 @@ Rules:
 
         raise HTTPException(
             status_code=500,
-            detail="Unexpected response received from AI model."
+            detail="Unexpected response received from AI service."
         )
 
+    # ========================================================
+    # PARSE JSON
+    # ========================================================
+
+    data = clean_json_response(content)
 
     # ========================================================
-    # PARSE AI JSON
-    # ========================================================
-
-    try:
-
-        # Remove possible markdown code fences
-        content = content.strip()
-
-        if content.startswith("```json"):
-            content = content[7:]
-
-        elif content.startswith("```"):
-            content = content[3:]
-
-        if content.endswith("```"):
-            content = content[:-3]
-
-        content = content.strip()
-
-        data = json.loads(content)
-
-    except json.JSONDecodeError:
-
-        print("AI returned invalid JSON:")
-        print(content)
-
-        raise HTTPException(
-            status_code=500,
-            detail="AI returned an invalid response format. Please try again."
-        )
-
-
-    # ========================================================
-    # VALIDATE RESPONSE
+    # VALIDATE REQUIRED FIELDS
     # ========================================================
 
     required_fields = [
         "notes",
         "explanation",
-        "exam_points",
+        "exam",
         "quiz"
     ]
 
     for field in required_fields:
 
         if field not in data:
-
             raise HTTPException(
                 status_code=500,
                 detail=f"AI response is missing '{field}'."
             )
 
+    # ========================================================
+    # RETURN NORMALIZED RESPONSE
+    # ========================================================
 
-    return data
+    return normalize_response(data)
 
 
 # ============================================================
-# MAIN GENERATE ROUTE
+# GENERATE STUDY MATERIAL
 # ============================================================
 
 @app.post("/generate")
 def generate(data: GenerateRequest):
 
-    # Clean user input
     topic = data.topic.strip()
     subject = data.subject.strip()
 
     if not topic:
-
         raise HTTPException(
             status_code=400,
             detail="Topic cannot be empty."
         )
 
-    if not subject:
+    if len(topic) > 300:
+        raise HTTPException(
+            status_code=400,
+            detail="Topic is too long. Please enter a shorter topic."
+        )
 
+    if not subject:
         subject = "General"
 
+    if len(subject) > 100:
+        raise HTTPException(
+            status_code=400,
+            detail="Subject is too long."
+        )
 
     print(
         f"Generating study material | "
@@ -313,14 +371,10 @@ def generate(data: GenerateRequest):
         f"Topic: {topic}"
     )
 
-
-    result = query_ai(
+    return query_ai(
         topic=topic,
         subject=subject
     )
-
-
-    return result
 
 
 # ============================================================
@@ -334,6 +388,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "app:app",
         host="127.0.0.1",
-        port=8000,
+        port=5000,
         reload=True
     )
+    
