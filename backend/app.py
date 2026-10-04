@@ -15,7 +15,7 @@ import re
 # ============================================================
 
 env_path = Path(__file__).resolve().parent / ".env"
-load_dotenv(dotenv_path=env_path)
+load_dotenv(dotenv_path=env_path, override=True)
 
 HF_TOKEN = os.getenv("HUGGINGFACE_API_KEY")
 

@@ -2,308 +2,539 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AI Study Helper</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+    <!-- ==========================================
+         NAVIGATION
+    =========================================== -->
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+    <header class="navbar">
 
-    <header class="topbar">
+        <a href="#home" class="brand">
+            <span class="brand-mark">AI</span>
+            <span>Study Helper</span>
+        </a>
 
-        <div class="logo">
-            AI Study Helper
-        </div>
+        <nav class="nav-links">
 
-        <div class="status">
-            AI Learning Assistant
-        </div>
+            <a href="#home">Home</a>
+
+            <a href="#features">Features</a>
+
+            <a href="#study">Study</a>
+
+        </nav>
+
+        <a href="#study" class="nav-button">
+            Start Studying →
+        </a>
 
     </header>
 
 
+    <!-- ==========================================
+         HORIZONTAL WEBSITE
+    =========================================== -->
 
-    <!-- =====================================================
-         SECTION 1: INTRO
-    ====================================================== -->
-
-    <section class="landing">
-
-        <div class="landing-content">
-
-            <p class="eyebrow">
-                AI-POWERED LEARNING
-            </p>
-
-            <h1>
-                Study smarter.
-                <br>
-                Understand faster.
-            </h1>
-
-            <p class="landing-description">
-
-                Get clear explanations, concise notes,
-                important exam points and practice questions
-                for any topic you are studying.
-
-            </p>
-
-            <a
-                href="#study"
-                class="start-btn"
-            >
-                Start Studying →
-            </a>
-
-        </div>
-
-    </section>
+    <main class="horizontal-container">
 
 
+        <!-- ======================================
+             01 — HOME
+        ======================================= -->
 
-    <!-- =====================================================
-         SECTION 2: STUDY
-    ====================================================== -->
+        <section class="screen hero" id="home">
 
-    <section
-        class="study"
-        id="study"
-    >
+            <div class="hero-background"></div>
 
-        <div class="study-header">
+            <div class="hero-content">
 
-            <p class="section-label">
-                STUDY WORKSPACE
-            </p>
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    AI-POWERED LEARNING
+                </div>
 
-            <h2>
-                What are you learning today?
-            </h2>
+                <h1>
+                    Study smarter.
+                    <span>Learn faster.</span>
+                </h1>
 
-            <p>
-                Enter a subject and topic to generate
-                personalized study material.
-            </p>
+                <p>
+                    Turn difficult topics into clear explanations,
+                    concise notes, exam-focused points and practice
+                    questions — all in one place.
+                </p>
 
-        </div>
+                <div class="hero-buttons">
+
+                    <a href="#study" class="primary-button">
+                        Start Studying
+                        <span>→</span>
+                    </a>
+
+                    <a href="#features" class="secondary-button">
+                        Explore Features
+                    </a>
+
+                </div>
+
+                <div class="hero-info">
+
+                    <span>✓ Built for students</span>
+
+                    <span>✓ Exam focused</span>
+
+                    <span>✓ AI powered</span>
+
+                </div>
+
+            </div>
 
 
+            <!-- Decorative element -->
 
-        <!-- =================================================
-             INPUT AREA
-        ================================================== -->
+            <div class="hero-decoration">
 
-        <div class="input-card">
+                <div class="circle circle-one"></div>
+
+                <div class="circle circle-two"></div>
+
+                <div class="circle circle-three"></div>
+
+                <div class="decoration-text">
+                    LEARN
+                </div>
+
+            </div>
 
 
-            <!-- SUBJECT -->
+            <div class="screen-number">
+                01 / 03
+            </div>
 
-            <div class="field">
+        </section>
 
-                <label for="subjectInput">
-                    Subject
-                </label>
 
-                <input
-                    type="text"
-                    id="subjectInput"
-                    placeholder="e.g. Data Structures"
+        <!-- ======================================
+             02 — FEATURES
+        ======================================= -->
+
+        <section class="screen features" id="features">
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        WHAT YOU GET
+                    </span>
+
+                    <h2>
+                        Everything you need
+                        <span>to study better.</span>
+                    </h2>
+
+                    <p>
+                        One intelligent workspace designed to help
+                        you understand concepts, prepare for exams
+                        and test your knowledge.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+
+                    <!-- FEATURE 1 -->
+
+                    <article class="feature-card">
+
+                        <span class="feature-number">
+                            01
+                        </span>
+
+                        <div class="feature-icon">
+                            N
+                        </div>
+
+                        <h3>
+                            Short Notes
+                        </h3>
+
+                        <p>
+                            Get concise, revision-friendly notes
+                            containing the most important concepts.
+                        </p>
+
+                    </article>
+
+
+                    <!-- FEATURE 2 -->
+
+                    <article class="feature-card">
+
+                        <span class="feature-number">
+                            02
+                        </span>
+
+                        <div class="feature-icon">
+                            E
+                        </div>
+
+                        <h3>
+                            Clear Explanations
+                        </h3>
+
+                        <p>
+                            Understand difficult topics through
+                            simple and structured explanations.
+                        </p>
+
+                    </article>
+
+
+                    <!-- FEATURE 3 -->
+
+                    <article class="feature-card">
+
+                        <span class="feature-number">
+                            03
+                        </span>
+
+                        <div class="feature-icon">
+                            P
+                        </div>
+
+                        <h3>
+                            Exam Points
+                        </h3>
+
+                        <p>
+                            Quickly identify important concepts
+                            and points that matter for examinations.
+                        </p>
+
+                    </article>
+
+
+                    <!-- FEATURE 4 -->
+
+                    <article class="feature-card">
+
+                        <span class="feature-number">
+                            04
+                        </span>
+
+                        <div class="feature-icon">
+                            Q
+                        </div>
+
+                        <h3>
+                            Quick Quiz
+                        </h3>
+
+                        <p>
+                            Practice with AI-generated questions
+                            and check your understanding instantly.
+                        </p>
+
+                    </article>
+
+                </div>
+
+
+                <div class="next-section">
+
+                    <span>
+                        Continue →
+                    </span>
+
+                    <a href="#study">
+                        Start your study session
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="screen-number">
+                02 / 03
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             03 — STUDY
+        ======================================= -->
+
+        <section class="screen study-section" id="study">
+
+            <div class="section-container study-container">
+
+                <div class="study-heading">
+
+                    <span class="section-label">
+                        STUDY WORKSPACE
+                    </span>
+
+                    <h2>
+                        What are you
+                        <span>learning today?</span>
+                    </h2>
+
+                    <p>
+                        Enter your subject and topic to generate
+                        AI-powered study material.
+                    </p>
+
+                </div>
+
+
+                <!-- INPUT AREA -->
+
+                <div class="input-card">
+
+                    <div class="input-field">
+
+                        <label for="subjectInput">
+                            Subject
+                        </label>
+
+                        <input
+                            type="text"
+                            id="subjectInput"
+                            placeholder="e.g. Data Structures"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="topicInput">
+                            Topic
+                        </label>
+
+                        <input
+                            type="text"
+                            id="topicInput"
+                            placeholder="e.g. Binary Trees"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="generate-btn"
+                        id="generateBtn"
+                        onclick="generateContent()"
+                    >
+
+                        <span>
+                            Generate Study Material
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- LOADING -->
+
+                <div
+                    id="loading"
+                    class="loading-message"
+                    style="display: none;"
                 >
+                    <span class="loading-spinner"></span>
 
-            </div>
-
-
-
-            <!-- TOPIC -->
-
-            <div class="field">
-
-                <label for="topicInput">
-                    Topic
-                </label>
-
-                <input
-                    type="text"
-                    id="topicInput"
-                    placeholder="e.g. Breadth First Search"
-                >
-
-            </div>
+                    Generating your study material...
+                </div>
 
 
-            <button
-                class="generate-btn"
-                id="generateBtn"
-                onclick="generateContent()"
-            >
-                Generate Study Material
-            </button>
+                <!-- ERROR -->
 
-        </div>
+                <div
+                    id="error"
+                    class="error-message"
+                    style="display: none;"
+                ></div>
 
 
+                <!-- GENERATED CONTENT -->
 
-        <!-- =================================================
-             LOADING MESSAGE
-        ================================================== -->
-
-        <div
-            id="loading"
-            class="loading"
-            style="display: none;"
-        >
-
-            Generating your study material...
-
-        </div>
+                <div class="results-grid">
 
 
+                    <!-- NOTES -->
 
-        <!-- =================================================
-             ERROR MESSAGE
-        ================================================== -->
+                    <article
+                        class="result-card"
+                        id="notes"
+                    >
 
-        <div
-            id="error"
-            class="error"
-            style="display: none;"
-        >
+                        <div class="result-header">
 
-        </div>
+                            <div class="result-icon">
+                                N
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    01
+                                </span>
+
+                                <h3>
+                                    Short Notes
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="content">
+                            Your notes will appear here.
+                        </div>
+
+                    </article>
 
 
+                    <!-- EXPLANATION -->
 
-        <!-- =================================================
-             GENERATED CONTENT
-        ================================================== -->
+                    <article
+                        class="result-card"
+                        id="explanation"
+                    >
 
-        <div class="container">
+                        <div class="result-header">
+
+                            <div class="result-icon">
+                                E
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    02
+                                </span>
+
+                                <h3>
+                                    Explanation
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="content">
+                            Your explanation will appear here.
+                        </div>
+
+                    </article>
 
 
-            <!-- SHORT NOTES -->
+                    <!-- EXAM -->
 
-            <div
-                class="box"
-                id="notes"
-            >
+                    <article
+                        class="result-card"
+                        id="exam"
+                    >
 
-                <h3>
-                    Short Notes
-                </h3>
+                        <div class="result-header">
 
-                <div class="content">
-                    Your notes will appear here.
+                            <div class="result-icon">
+                                P
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    03
+                                </span>
+
+                                <h3>
+                                    Exam Points
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="content">
+                            Important exam points will appear here.
+                        </div>
+
+                    </article>
+
+
+                    <!-- QUIZ -->
+
+                    <article
+                        class="result-card"
+                        id="quiz"
+                    >
+
+                        <div class="result-header">
+
+                            <div class="result-icon">
+                                Q
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    04
+                                </span>
+
+                                <h3>
+                                    Quick Quiz
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="content">
+                            Your quiz questions will appear here.
+                        </div>
+
+                    </article>
+
                 </div>
 
             </div>
 
 
-
-            <!-- EXPLANATION -->
-
-            <div
-                class="box"
-                id="explanation"
-            >
-
-                <h3>
-                    Explanation
-                </h3>
-
-                <div class="content">
-                    Your explanation will appear here.
-                </div>
-
+            <div class="screen-number">
+                03 / 03
             </div>
 
+        </section>
+
+    </main>
 
 
-            <!-- EXAM POINTS -->
-
-            <div
-                class="box"
-                id="exam"
-            >
-
-                <h3>
-                    Exam Points
-                </h3>
-
-                <div class="content">
-                    Important exam points will appear here.
-                </div>
-
-            </div>
-
-
-
-            <!-- QUIZ -->
-
-            <div
-                class="box"
-                id="quiz"
-            >
-
-                <h3>
-                    Quick Quiz
-                </h3>
-
-                <div class="content">
-                    Your quiz questions will appear here.
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        <p>
-            AI Study Helper
-        </p>
-
-        <p>
-            Built for smarter learning
-        </p>
-
-    </footer>
-
-
-
-    <!-- =====================================================
+    <!-- ==========================================
          JAVASCRIPT
-         
-         IMPORTANT:
-         Keep this at the bottom so the HTML loads first.
-    ====================================================== -->
+    =========================================== -->
 
     <script src="script.js"></script>
 
