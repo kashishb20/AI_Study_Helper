@@ -30,7 +30,7 @@ async function generateContent() {
     "<h3>🧠 Quick Quiz</h3><p class='loading'>⏳ Generating...</p>";
 
   try {
-    const response = await fetch("https://ai-study-helper-api.onrender.com/", {
+    const response = await fetch("https://ai-study-helper-api.onrender.com/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
